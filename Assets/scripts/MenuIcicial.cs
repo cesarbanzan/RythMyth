@@ -17,14 +17,17 @@ public class MenuIcicial : MonoBehaviour
     }
     public void Nivel1()
     {
-        SceneManager.LoadScene(1);
+        //carga la escena 5 = nivel1
+        SceneManager.LoadScene(5);
     }
     public void Nivel2()
     {
+        //carga la escena 5 = nivel2
         SceneManager.LoadScene(2);
     }
     public void exit()
     {
+        //cierra la aplicacion
         Debug.Log("salimos..");
         Application.Quit();
     }
