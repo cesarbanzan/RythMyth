@@ -6,6 +6,8 @@ public class NoteObject : MonoBehaviour
 {
     public KeyCode keyPressed;
 
+    public GameObject hitEffect,goodEffect,perfectEffect,missEffect;
+
     public bool canBePressed;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,32 @@ public class NoteObject : MonoBehaviour
             if(canBePressed)
             {
                 gameObject.SetActive(false);
+                //Destroy(gameObject);
+                //GameManager.instance.NoteHit();
+
+                if (Mathf.Abs(transform.position.y) > 0.25f) 
+                {
+                    Debug.Log("Hit");
+                    GameManager.instance.NormalHit();
+                    Instantiate(hitEffect,transform.position,hitEffect.transform.rotation);
+                }else if(Mathf.Abs(transform.position.y)> 0.05f)
+                {
+                    Debug.Log("Good");
+                    GameManager.instance.GoodHit();
+                    Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
+
+                }else if (transform.position.y < 0f)
+                {
+                    GameManager.instance.NoteMissed();
+                    Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+                }
+                else
+                {
+                    Debug.Log("Perfect");
+                    GameManager.instance.PerfectHit();
+                    Instantiate(perfectEffect, transform.position, perfectEffect.transform.rotation);
+
+                }
             }
         }
     }
@@ -41,8 +69,8 @@ public class NoteObject : MonoBehaviour
 
         if (other.tag == "Activator")
         {
+            Debug.Log("sale del boton");
             canBePressed = false;
-
         }
     }
 }

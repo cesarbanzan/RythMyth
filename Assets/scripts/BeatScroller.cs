@@ -17,16 +17,17 @@ public class BeatScroller : MonoBehaviour
     void Update()
     {
         //hacemos que las flechas caigan 
-        if(!hasStarted)
+        if(hasStarted)
         {
-            if (Input.anyKeyDown)
-            {
-                hasStarted = true;
-            }
+            transform.position -= new Vector3(0f, beatTempo * Time.deltaTime, 0f);
+            /* if (Input.anyKeyDown)
+             {
+                 hasStarted = true;
+             }*/
         }
         else
         {
-            transform.position -= new Vector3(0f,beatTempo * Time.deltaTime,0f);
+        
         }
     }
 }

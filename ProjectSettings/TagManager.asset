@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: effect
+    uniqueID: 2377391981
+    locked: 0
   - name: Arrow
     uniqueID: 3988454475
     locked: 0
