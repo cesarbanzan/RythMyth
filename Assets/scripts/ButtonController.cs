@@ -8,6 +8,8 @@ public class ButtonController : MonoBehaviour
     private SpriteRenderer spriteRender;
     public Sprite defaultImage;
     public Sprite pushImage;
+
+    public Player player;
     // le asignamos una tecla a un boton
     public KeyCode keyPressed;
     // Start is called before the first frame update
@@ -20,13 +22,16 @@ public class ButtonController : MonoBehaviour
     void Update()
     {
         // cambiamos la imagen cuando se toca la tecla correspondiente a un boton
-        if (Input.GetKeyDown(keyPressed)) 
+      if(transform.position.y== player.transform.position.y)
         {
-            spriteRender.sprite = pushImage;
-        }
-        if(Input.GetKeyUp(keyPressed))
-        {
-            spriteRender.sprite = defaultImage;
+            if (Input.GetKeyDown(keyPressed))
+            {
+                spriteRender.sprite = pushImage;
+            }
+            if (Input.GetKeyUp(keyPressed))
+            {
+                spriteRender.sprite = defaultImage;
+            }
         }
     }
 }
