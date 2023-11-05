@@ -68,9 +68,13 @@ public class NoteObject : MonoBehaviour
 
         if (other.tag == "Activator")
         {
-          
-            Debug.Log("sale del boton");
-            canBePressed = false;
+            if(canBePressed)
+            {
+                canBePressed = false;
+                Debug.Log("Missed");
+                GameManager.instance.NoteMissed();
+                Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+            }
         }
     }
 }

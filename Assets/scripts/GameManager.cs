@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public AudioSource theMusic;
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
         totalNotes = FindObjectsOfType<NoteObject>().Length;
         startPlaying = true;
-        theBM.start = true;
+       
         theMusic.Play();
     }
 
@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         {
 
             resultsScreen.SetActive(true);
+            theBM.StopAllCoroutines();
             normalText.text = "" + normalHits;
             goodsText.text = goodHits.ToString();
             perfectText.text = perfectHits.ToString();

@@ -58,6 +58,9 @@ TagManager:
   - name: Player
     uniqueID: 260658623
     locked: 0
+  - name: button animation
+    uniqueID: 2061227083
+    locked: 0
   - name: effect
     uniqueID: 2377391981
     locked: 0

@@ -14,6 +14,7 @@ public class HorizontalNote : MonoBehaviour
     public float perfectDistance;
     public bool canBePressed;
     public string etiqueta;
+    
     public ButtonController button;
     public bool playerhit;
     public Player jugador;
@@ -66,7 +67,8 @@ public class HorizontalNote : MonoBehaviour
     {
         if (other.tag == etiqueta)
         {
-            if(jugador.transform.position.y==button.transform.position.y)
+            Debug.Log("jugador segun el notas" + jugador.transform.position.y);
+            if (jugador.transform.position.y==button.transform.position.y)
             {
                 canBePressed = true;
             }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class BeatMaster : MonoBehaviour
 {
     public GameObject[] patrones;
-    public bool start;
     public bool stop;
+    public int time;
    [SerializeField] public int vueltas;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class BeatMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
 
     }
     IEnumerator GenerarBeat()
@@ -26,8 +26,8 @@ public class BeatMaster : MonoBehaviour
    
         for(int i = 0; i < vueltas; i++)
         {
-            Instantiate(patrones[i], transform.position, Quaternion.identity);
-            yield return new WaitForSeconds(2);
+            Instantiate(patrones[Random.Range(0,patrones.Length)], transform.position, Quaternion.identity).SetActive(true);
+            yield return new WaitForSeconds(time);
         }
   
     }

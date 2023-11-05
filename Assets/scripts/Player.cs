@@ -25,16 +25,21 @@ public class Player : MonoBehaviour
         {
             if(Input.GetKeyDown(subir)&& transform.position.y== boton1.transform.position.y)
             {
+                Debug.Log("jugador segun el jugador" +transform.position.y);
                 transform.position = new Vector3(transform.position.x, boton3.transform.position.y, 0f);
             }
             else if (Input.GetKeyDown(bajar) && transform.position.y == boton3.transform.position.y)
             {
+                Debug.Log("jugador segun el jugador" + transform.position.y);
                 transform.position = new Vector3(transform.position.x, boton1.transform.position.y, 0f);
             }else if (Input.GetKeyDown(subir))
             {
                 transform.position += new Vector3(0f, desplazar , 0f);
-            }else if (Input.GetKeyDown(bajar))
+                Debug.Log("jugador segun el jugador" + transform.position.y);
+            }
+            else if (Input.GetKeyDown(bajar))
             {
+                Debug.Log("jugador segun el jugador" + transform.position.y);
                 transform.position += new Vector3(0f, -desplazar, 0f);
             }
         }
