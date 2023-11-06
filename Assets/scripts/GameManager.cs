@@ -66,9 +66,9 @@ public class GameManager : MonoBehaviour
             missedText.text = " " + missedHits;
 
             float totalHit = normalHits + goodHits + perfectHits;
-            float percentHits = (totalHit / totalNotes) * 100f;
+            float percentHits = ((totalHit / totalNotes) * 100f)/theBM.vueltas;
 
-            percentText.text = (percentHits / theBM.vueltas).ToString("F1") + "%";
+            percentText.text = percentHits.ToString("F1") + "%";
             string rankVal = "F";
             if (percentHits > 40)
             {
