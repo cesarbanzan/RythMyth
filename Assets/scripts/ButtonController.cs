@@ -31,7 +31,7 @@ public class ButtonController : MonoBehaviour
         if (staticButton){
             if (Input.GetKeyDown(keyPressed))
             {
-                Debug.Log("jugador segun el boton" + player.transform.position.y);
+              
                 spriteRender.sprite = pushImage;
                 if (animatedButton)
                 {
@@ -53,12 +53,12 @@ public class ButtonController : MonoBehaviour
         {
             if (Input.GetKeyDown(keyPressed))
             {
-              
-                spriteRender.sprite = pushImage;
-                  if (animatedButton)
+                if (animatedButton)
                 {
                     animate.SetBool("explote", true);
                 }
+                spriteRender.sprite = pushImage;
+
             }
             if (Input.GetKeyUp(keyPressed))
             {
