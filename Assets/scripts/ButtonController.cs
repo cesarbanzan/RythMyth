@@ -53,11 +53,19 @@ public class ButtonController : MonoBehaviour
         {
             if (Input.GetKeyDown(keyPressed))
             {
-                Debug.Log("jugador segun el boton"+player.transform.position.y);
+              
                 spriteRender.sprite = pushImage;
+                  if (animatedButton)
+                {
+                    animate.SetBool("explote", true);
+                }
             }
             if (Input.GetKeyUp(keyPressed))
             {
+                if (animatedButton)
+                {
+                    animate.SetBool("explote", false);
+                }
                 spriteRender.sprite = defaultImage;
             }
         }

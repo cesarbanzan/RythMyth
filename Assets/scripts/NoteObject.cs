@@ -41,7 +41,7 @@ public class NoteObject : MonoBehaviour
                     Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
 
                 }
-                else
+                else if(Mathf.Abs(transform.position.y)== 0)
                 {
                     Debug.Log("Perfect");
                     GameManager.instance.PerfectHit();
@@ -50,7 +50,16 @@ public class NoteObject : MonoBehaviour
                 }
             }
         }
-     
+        if (!canBePressed)
+        {
+            if (transform.position.y < 0)
+            {
+                gameObject.SetActive(false);
+                GameManager.instance.NoteMissed();
+                Instantiate(missEffect, new Vector3(transform.position.x,0f,0f), missEffect.transform.rotation);
+            }
+        }
+
     }
     //recibimos cuado las flechas pasen sobre los botones
     private void OnTriggerEnter2D(Collider2D other)
@@ -72,8 +81,7 @@ public class NoteObject : MonoBehaviour
             {
                 canBePressed = false;
                 Debug.Log("Missed");
-                GameManager.instance.NoteMissed();
-                Instantiate(missEffect, transform.position, missEffect.transform.rotation);
+            
             }
         }
     }
