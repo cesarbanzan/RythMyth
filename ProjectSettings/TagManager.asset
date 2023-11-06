@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Activator
+  - miss
+  - button1
+  - button2
+  - button3
   layers:
   - Default
   - TransparentFX
@@ -41,6 +45,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: "monta\xF1as2"
+    uniqueID: 3808825373
+    locked: 0
+  - name: "monta\xF1a"
+    uniqueID: 2221595113
+    locked: 0
+  - name: arboles
+    uniqueID: 3357658081
+    locked: 0
+  - name: Player
+    uniqueID: 260658623
+    locked: 0
+  - name: button animation
+    uniqueID: 2061227083
     locked: 0
   - name: effect
     uniqueID: 2377391981

@@ -8,6 +8,7 @@ public class NoteObject : MonoBehaviour
 
     public GameObject hitEffect,goodEffect,perfectEffect,missEffect;
 
+   
     public bool canBePressed;
     // Start is called before the first frame update
     void Start()
@@ -27,23 +28,20 @@ public class NoteObject : MonoBehaviour
                 //Destroy(gameObject);
                 //GameManager.instance.NoteHit();
 
-                if (Mathf.Abs(transform.position.y) > 0.25f) 
+                if (Mathf.Abs(transform.position.y) > 0.25f)
                 {
                     Debug.Log("Hit");
                     GameManager.instance.NormalHit();
-                    Instantiate(hitEffect,transform.position,hitEffect.transform.rotation);
-                }else if(Mathf.Abs(transform.position.y)> 0.05f)
+                    Instantiate(hitEffect, transform.position, hitEffect.transform.rotation);
+                }
+                else if (Mathf.Abs(transform.position.y) > 0.05f)
                 {
                     Debug.Log("Good");
                     GameManager.instance.GoodHit();
                     Instantiate(goodEffect, transform.position, goodEffect.transform.rotation);
 
-                }else if (transform.position.y < 0f)
-                {
-                    GameManager.instance.NoteMissed();
-                    Instantiate(missEffect, transform.position, missEffect.transform.rotation);
                 }
-                else
+                else if(Mathf.Abs(transform.position.y)== 0)
                 {
                     Debug.Log("Perfect");
                     GameManager.instance.PerfectHit();
@@ -52,15 +50,25 @@ public class NoteObject : MonoBehaviour
                 }
             }
         }
+        if (!canBePressed)
+        {
+            if (transform.position.y < 0)
+            {
+                gameObject.SetActive(false);
+                GameManager.instance.NoteMissed();
+                Instantiate(missEffect, new Vector3(transform.position.x,0f,0f), missEffect.transform.rotation);
+            }
+        }
+
     }
     //recibimos cuado las flechas pasen sobre los botones
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Activator")
         {
-        canBePressed=true;
-
+            canBePressed=true;
         }
+    
     }
     //recibimos cuado las flechas no esten sobre los botones
     private void OnTriggerExit2D(Collider2D other)
@@ -69,8 +77,12 @@ public class NoteObject : MonoBehaviour
 
         if (other.tag == "Activator")
         {
-            Debug.Log("sale del boton");
-            canBePressed = false;
+            if(canBePressed)
+            {
+                canBePressed = false;
+                Debug.Log("Missed");
+            
+            }
         }
     }
 }

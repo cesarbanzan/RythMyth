@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public AudioSource theMusic;
@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public bool startPlaying;
 
     public BeatScroller thBS;
+
+    public BeatMaster theBM;
 
     public static GameManager instance;
 
@@ -45,58 +47,51 @@ public class GameManager : MonoBehaviour
         currentMultipplier = 1;
 
         totalNotes = FindObjectsOfType<NoteObject>().Length;
+        startPlaying = true;
+       
+        theMusic.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!startPlaying)
+        if (!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
         {
-            if (Input.anyKeyDown)
-            {
-                startPlaying = true;
-                thBS.hasStarted = true;
-                theMusic.Play();
-            }
-        }
-        else
-        {
-            if(!theMusic.isPlaying && !resultsScreen.activeInHierarchy)
-            {
-                resultsScreen.SetActive(true);
-                normalText.text = "" + normalHits;
-                goodsText.text  =goodHits.ToString();
-                perfectText.text =perfectHits.ToString();
-                missedText.text = " "+missedHits;
 
-                float totalHit= normalHits+goodHits+perfectHits;
-                float percentHits = (totalHit / totalNotes) * 100f;
+            resultsScreen.SetActive(true);
+            theBM.StopAllCoroutines();
+            normalText.text = "" + normalHits;
+            goodsText.text = goodHits.ToString();
+            perfectText.text = perfectHits.ToString();
+            missedText.text = " " + missedHits;
 
-                percentText.text=percentHits.ToString("F1")+"%";
-                string rankVal = "F";
-                if (percentHits > 40)
+            float totalHit = normalHits + goodHits + perfectHits;
+            float percentHits = (totalHit / totalNotes) * 100f;
+
+            percentText.text = (percentHits / theBM.vueltas).ToString("F1") + "%";
+            string rankVal = "F";
+            if (percentHits > 40)
+            {
+                rankVal = "D";
+                if (percentHits > 55)
                 {
-                    rankVal = "D";
-                    if (percentHits > 55)
+                    rankVal = "C";
+                    if (percentHits > 70)
                     {
-                        rankVal= "C";
-                        if(percentHits > 70)
+                        rankVal = "B";
+                        if (percentHits > 85)
                         {
-                            rankVal= "B";
-                            if(percentHits > 85)
+                            rankVal = "A";
+                            if (percentHits > 95)
                             {
-                                rankVal= "A";
-                                if( percentHits > 95)
-                                {
-                                    rankVal= "S";
-                                }
+                                rankVal = "S";
                             }
                         }
                     }
                 }
-                rankText.text = rankVal;
-                finalScoreText.text=currentScore.ToString();
             }
+            rankText.text = rankVal;
+            finalScoreText.text = currentScore.ToString();
         }
     }
 

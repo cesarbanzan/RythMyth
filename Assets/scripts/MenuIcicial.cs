@@ -18,7 +18,11 @@ public class MenuIcicial : MonoBehaviour
     public void Nivel1()
     {
         //carga la escena 5 = nivel1
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(3);
+    }
+    public void NivelHorizontal()
+    {
+        SceneManager.LoadScene(1);
     }
     public void Nivel2()
     {
